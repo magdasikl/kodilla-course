@@ -15,7 +15,7 @@ public class TestingMain {
             System.out.println("Błąd dodawania");
         }
 
-        if (substractResult == 472){
+        if (substractResult == 471){
             System.out.println("Odejmowanie jest zgodne");
         } else {
             System.out.println("Błąd odejmowania");
