@@ -17,9 +17,9 @@ public class ShapeCollector {
 
     }
 
-    public Integer removeFigure(Shape shape) {
+    public Shape removeFigure(Shape shape) {
 
-        return 0;
+        return shape;
 
     }
 

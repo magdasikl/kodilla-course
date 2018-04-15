@@ -1,5 +1,6 @@
 package com.kodilla.testing.shape;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ShapeCollectorTestSuite {
@@ -25,13 +26,13 @@ public class ShapeCollectorTestSuite {
         Shape figure = new Circle();
         ShapeCollector figures = new ShapeCollector();
 //        When
-        Integer number = figures.removeFigure(figure);
+        Shape number = figures.removeFigure(figure);
 //        Then
-        if(number > 0){
+        Assert.assertEquals(figure,number);
+
             System.out.println("odjęło figure");
-        } else {
-            System.out.println("błąd metody remove");
-        }
+
+
     }
     @Test
     public void testGetFigure() {
