@@ -4,11 +4,11 @@ public class Triangle implements Shape {
 
     @Override
     public String getShapeName() {
-        return null;
+        return "Triangle";
     }
 
     @Override
     public Integer getField() {
-        return null;
+        return 25;
     }
 }

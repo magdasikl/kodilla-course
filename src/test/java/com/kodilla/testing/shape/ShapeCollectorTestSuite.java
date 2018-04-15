@@ -26,6 +26,7 @@ public class ShapeCollectorTestSuite {
         Shape figure = new Circle();
         ShapeCollector figures = new ShapeCollector();
 //        When
+        figures.addFigure(figure);
         Shape number = figures.removeFigure(figure);
 //        Then
         Assert.assertEquals(figure,number);

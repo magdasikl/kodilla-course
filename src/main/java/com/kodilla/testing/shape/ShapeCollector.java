@@ -11,21 +11,27 @@ public class ShapeCollector {
     }
 
     public Integer addFigure(Shape shape){
-
-        return 0;
-
+        figures.add(shape);
+        return 1;
 
     }
 
     public Shape removeFigure(Shape shape) {
-
-        return shape;
+        int indexShape = -1;
+        Shape rShape = null;
+        for (Shape mShape: figures) {
+          if(  mShape == shape){
+              indexShape =  figures.indexOf(shape);
+              rShape = shape;
+          }
+        }
+        figures.remove(indexShape);
+        return rShape;
 
     }
 
     public Shape getFigure(int n){
-
-        return null;
+        return figures.get(n);
 
     }
 
