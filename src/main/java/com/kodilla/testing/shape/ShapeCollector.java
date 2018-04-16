@@ -18,16 +18,16 @@ public class ShapeCollector {
     }
 
     public Shape removeFigure(Shape shape) {
-        int indexShape = -1;
-        Shape rShape = null;
-        for (Shape mShape: figures) {
-          if(  mShape == shape){
-              indexShape =  figures.indexOf(shape);
-              rShape = shape;
-          }
-        }
-        figures.remove(indexShape);
-        return rShape;
+//        int indexShape = -1;
+//        Shape rShape = null;
+//        for (Shape mShape: figures) {
+//          if(  mShape == shape){
+//              indexShape =  figures.indexOf(shape);
+//              rShape = shape;
+//          }
+//        }
+        figures.remove(shape);
+        return shape;
 
     }
 
