@@ -8,22 +8,20 @@ public class ShapeCollectorTestSuite {
     @Test
     public void testAddFigure(){
     // Given
-        Shape figure = new Circle();
+        Shape figure = new Circle(6);
         ShapeCollector figures = new ShapeCollector();
     // When
-        Integer number = figures.addFigure(figure);
+        Shape number = figures.addFigure(figure);
 //     Then
-        if (number > 0){
+        Assert.assertEquals(number,figure);
             System.out.println(" działa");
-        } else {
-            System.out.println("błąd metody add");
-        }
+
     }
 
     @Test
     public void testRemoveFigure() {
 //       Given
-        Shape figure = new Circle();
+        Shape figure = new Circle(76);
         ShapeCollector figures = new ShapeCollector();
 //        When
         figures.addFigure(figure);

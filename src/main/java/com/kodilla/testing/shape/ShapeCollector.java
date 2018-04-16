@@ -7,12 +7,13 @@ public class ShapeCollector {
     private ArrayList<Shape> figures;
 
     public ShapeCollector() {
+
         this.figures = new ArrayList<Shape>();
     }
 
-    public Integer addFigure(Shape shape){
+    public Shape addFigure(Shape shape){
         figures.add(shape);
-        return 1;
+        return shape;
 
     }
 
