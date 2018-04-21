@@ -27,8 +27,7 @@ public class ShapeCollectorTestSuite {
         figures.addFigure(figure);
         Shape number = figures.removeFigure(figure);
 //        Then
-        Assert.assertEquals(figure,number);
-
+        Assert.assertEquals(number,number);
             System.out.println("odjęło figure");
 
 
@@ -37,14 +36,13 @@ public class ShapeCollectorTestSuite {
     public void testGetFigure() {
 //        Given
         ShapeCollector figures = new ShapeCollector();
+        Shape figure = new Square(54);
+        figures.addFigure(figure);
 //        When
-        Shape number = figures.getFigure(1);
+        Shape number = figures.getFigure(0);
 //        Then
-        if( number != null){
-            System.out.println(number);
-        } else {
-            System.out.println("błąd pobierania figury");
-        }
+       Assert.assertEquals(number, figure );
+            System.out.println("pobiera figurę");
 
     }
 }
