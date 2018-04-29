@@ -10,7 +10,9 @@ import java.util.Set;
 public class Continent {
 
     private final List<Country> countries = new ArrayList<Country>();
-    public void addCountry(Country country){
+    private String name;
+    public void addCountry(Country country, String name){
+        this.name = name;
         countries.add(country);
     }
 

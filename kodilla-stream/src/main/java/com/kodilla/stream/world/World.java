@@ -12,6 +12,9 @@ public class World {
     }
 
     public BigDecimal getPeopleQuantity(){
-        return continents.stream().flatMap(continent -> continent.getCountries().stream()).map(Country::getPeopleQuantity).reduce(BigDecimal.ZERO, (bigDecimal, bigDecimal2) -> bigDecimal.add(bigDecimal2));
+        return continents.stream()
+                .flatMap(continent -> continent.getCountries().stream())
+                .map(Country::getPeopleQuantity)
+                .reduce(BigDecimal.ZERO, (bigDecimal, bigDecimal2) -> bigDecimal.add(bigDecimal2));
     }
 }

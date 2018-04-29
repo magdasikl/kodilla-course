@@ -11,12 +11,12 @@ public class WorldTestSuite {
 
             //    Given
             Continent continent1 = new Continent();
-            continent1.addCountry(new Country("Polska", new BigDecimal("40")));
-            continent1.addCountry(new Country("Węgry",new BigDecimal("38")));
-            continent1.addCountry(new Country("Niemcy",new BigDecimal("60")));
+            continent1.addCountry(new Country("Polska", new BigDecimal("40")),"Europa");
+            continent1.addCountry(new Country("Węgry",new BigDecimal("38")),"Europa");
+            continent1.addCountry(new Country("Niemcy",new BigDecimal("60")),"Europa");
 
             Continent continent2 = new Continent();
-            continent2.addCountry(new Country("USA",new BigDecimal("70")));
+            continent2.addCountry(new Country("USA",new BigDecimal("70")),"Ameryka Płn.");
 
             World world = new World();
             world.addContinents(continent1);
@@ -24,11 +24,11 @@ public class WorldTestSuite {
 
 //            When
             world.getPeopleQuantity();
-                System.out.println(world.getPeopleQuantity());
+            BigDecimal numberPeopleWord = world.getPeopleQuantity();
 
 //            Then
             BigDecimal quantity = new BigDecimal("208");
-            Assert.assertEquals(quantity, world.getPeopleQuantity());
+            Assert.assertEquals(quantity, numberPeopleWord);
 
         }
 }
