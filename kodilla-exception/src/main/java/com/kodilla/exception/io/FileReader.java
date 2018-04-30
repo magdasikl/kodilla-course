@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class FileReader {
-    public void readFile() {
+    public void readFile() throws FileReaderException {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
@@ -15,10 +15,10 @@ public class FileReader {
 
         try (Stream<String> fileLines = Files.lines(Paths.get(file.getPath()))) {
             fileLines.forEach(System.out::println);
+
         } catch (IOException e) {
-            System.out.println("coś żle  "+e);
-        } finally {
-            System.out.println("Dobrze się skończyło");
+            throw new FileReaderException();
+  //          System.out.println("coś żle  " + e);
         }
     }
 }
