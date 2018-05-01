@@ -1,7 +1,6 @@
 package com.kodilla.testing.forum.statistics;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -24,13 +23,19 @@ public class testStat {
         listOfUser.add("Michał");
         listOfUser.add("Ania");
 
+//          When
         when(stattisticMock.usersnames()).thenReturn(listOfUser);
         when(stattisticMock.postsCount()).thenReturn(1);
         when(stattisticMock.commentsCount()).thenReturn(10);
 
         Stat testStat = new Stat(stattisticMock.usersnames(),stattisticMock.postsCount(),stattisticMock.commentsCount());
-        testStat.calculateAdvStatistics(stattisticMock);
-        testStat.showStatisctics();
+        int iCal = testStat.calculateAdvStatistics(stattisticMock);
+        int iShowStat = testStat.showStatisctics();
+
+//        Then
+        Assert.assertEquals(10, iShowStat );
+        Assert.assertEquals(10, iCal );
+
 
 
 

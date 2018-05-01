@@ -23,6 +23,30 @@ class Stat implements Statistics{
         this.numberOfComments = numberOfComments;
     }
 
+    public List<String> getListOfUsers() {
+        return listOfUsers;
+    }
+
+    public int getNumberOfPosts() {
+        return numberOfPosts;
+    }
+
+    public int getNumberOfComments() {
+        return numberOfComments;
+    }
+
+    public int getAvgPostUser() {
+        return avgPostUser;
+    }
+
+    public int getAvgComUser() {
+        return avgComUser;
+    }
+
+    public int getAvgComPost() {
+        return avgComPost;
+    }
+
     @Override
     public List<String> usersnames() {
         return listOfUsers;
@@ -38,7 +62,7 @@ class Stat implements Statistics{
         return numberOfComments;
     }
 
-    public void calculateAdvStatistics(Statistics statistics){
+    public int calculateAdvStatistics(Statistics statistics){
         int post = statistics.postsCount();
         List<String> user = statistics.usersnames();
         int qUsres = user.size();
@@ -50,14 +74,15 @@ class Stat implements Statistics{
 
 
         avgComPost = comment/post;
-
+        return avgComPost;
 
     }
 
-    public void showStatisctics(){
+    public int showStatisctics(){
         System.out.println("Srednia liczba postów na użytkownika wynosi: "+ avgPostUser);
         System.out.println("Srednia liczba komentarzy na użytkownika wynosi: "+ avgComUser);
         System.out.println("Srednia liczba komentarzy na post wynosi: " + avgComPost);
+        return avgComPost;
     }
 
 }
