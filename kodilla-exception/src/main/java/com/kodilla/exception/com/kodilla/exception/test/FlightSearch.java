@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FlightSearch {
-    public void findFilght(Flight flight)throws RouteNotFoundException{
+    public boolean findFilght(Flight flight)throws RouteNotFoundException{
         Map<String, Boolean> mapDeparture = new HashMap<>();
         mapDeparture.put("Cracow",true);
         mapDeparture.put("Katowice", false);
@@ -18,5 +18,7 @@ public class FlightSearch {
         if(getArrival == null){
             throw new RouteNotFoundException("Object Aiport was wrong");
         }
+
+        return getArrival;
     }
 }

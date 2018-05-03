@@ -17,7 +17,12 @@ public class ExceptionHandling {
         Flight flight = new Flight("Katowice", "Mascov") ;
         FlightSearch flightSearch = new FlightSearch();
         try {
-            flightSearch.findFilght(flight);
+            boolean flight1 = flightSearch.findFilght(flight);
+            if(flight1 == true){
+                System.out.println("Możemy lecieć");
+            } else {
+                System.out.println(" Brak połączenia");
+            }
         } catch (RouteNotFoundException e){
             System.out.println(e);
         }
