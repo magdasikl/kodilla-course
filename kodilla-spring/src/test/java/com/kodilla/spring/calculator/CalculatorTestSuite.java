@@ -17,11 +17,9 @@ public class CalculatorTestSuite {
 //        Given
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.calculator");
         Calculator calculator = context.getBean(Calculator.class);
-        Display display = context.getBean(Display.class);
 
         //    When
         double val = calculator.add(2.8, 7.2);
-        display.displayValue(val);
 
 //        Then
         Assert.assertEquals(10.0,val,0.01);
@@ -33,11 +31,9 @@ public class CalculatorTestSuite {
 //        Given
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.calculator");
         Calculator calculator = context.getBean(Calculator.class);
-        Display display = context.getBean(Display.class);
 
 //        When
         double val = calculator.sub(25,10);
-        display.displayValue(val);
 
 //        Then
         Assert.assertEquals(15,val,0.01);
@@ -49,11 +45,9 @@ public class CalculatorTestSuite {
 //        Given
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.calculator");
         Calculator calculator = context.getBean(Calculator.class);
-        Display display = context.getBean(Display.class);
 
 //        When
         double val = calculator.mul(56,2);
-        display.displayValue(val);
 
 //        Then
         Assert.assertEquals(112, val,0.001);
@@ -65,11 +59,8 @@ public class CalculatorTestSuite {
 //        Given
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring.calculator");
         Calculator calculator = context.getBean(Calculator.class);
-        Display display = context.getBean(Display.class);
-
 //        When
         double val = calculator.div(36,6);
-        display.displayValue(val);
 
 //        Then
         Assert.assertEquals(6,val,0.001);
