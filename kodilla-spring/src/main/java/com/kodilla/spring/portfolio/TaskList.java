@@ -13,4 +13,9 @@ public final class TaskList {
     public TaskList() {
         tasks = new ArrayList<>();
     }
+
+    public List addTaskList(String task) {
+        tasks.add(task);
+        return tasks;
+    }
 }
