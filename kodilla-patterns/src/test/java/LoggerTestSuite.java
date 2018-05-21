@@ -1,4 +1,4 @@
-import com.kodiila.patterns.singleton.Logger;
+import com.kodilla.patterns.singleton.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
