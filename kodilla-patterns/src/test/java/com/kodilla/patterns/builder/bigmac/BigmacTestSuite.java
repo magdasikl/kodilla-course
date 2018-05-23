@@ -24,5 +24,9 @@ public class BigmacTestSuite {
 //        Then
         Assert.assertEquals(4, howManyIngredients);
         Assert.assertEquals("BARBECUE", bigmac.getSauce());
+        Assert.assertEquals("sałata",bigmac.getIngredients().get(0));
+        Assert.assertEquals("ogórek", bigmac.getIngredients().get(1));
+        Assert.assertEquals("chilli", bigmac.getIngredients().get(2));
+        Assert.assertEquals("ser", bigmac.getIngredients().get(3));
     }
 }
