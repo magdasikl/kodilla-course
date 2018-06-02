@@ -20,18 +20,20 @@ public class TaskListDaoTestSuite {
     @Test
     public void testFindByListName() {
 
-//        Given
-        TaskList taskList = new TaskList(LISTNAME, "Description my firt task");
+//Given
+        TaskList taskList = new TaskList(LISTNAME, "Description my first task");
         taskListDao.save(taskList);
         String name = taskList.getListName();
 
-//        When
+//When
         List<TaskList> readTaskList = taskListDao.findByListName(name);
-
-//        Then
+        List<TaskList> readTaskList2 = taskListDao.findByListName("Ola");
+//Then
         Assert.assertEquals(LISTNAME,readTaskList.get(0).getListName());
+        Assert.assertEquals(1,readTaskList.size());
+        Assert.assertEquals(0,readTaskList2.size());
 
-//        CleanUp
+//CleanUp
         taskListDao.delete(readTaskList);
 
     }
