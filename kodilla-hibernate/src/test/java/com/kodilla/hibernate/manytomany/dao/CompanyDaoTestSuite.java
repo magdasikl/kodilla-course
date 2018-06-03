@@ -1,7 +1,7 @@
 package com.kodilla.hibernate.manytomany.dao;
 
-import kom.kodilla.hibernate.manytomany.Company;
-import kom.kodilla.hibernate.manytomany.Employee;
+import com.kodilla.hibernate.manytomany.Company;
+import com.kodilla.hibernate.manytomany.Employee;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
