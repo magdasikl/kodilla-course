@@ -7,7 +7,7 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Company.threeCharactersNameCompany",
-        query = "SELECT * FROM companies WHERE company_name LIKE 'gre%'",
+        query = "SELECT * FROM COMPANIES WHERE company_name LIKE :SRK",
         resultClass = Company.class
 )
 @Entity
@@ -15,6 +15,7 @@ import java.util.List;
 public class Company {
     private int id;
     private String name;
+    private String skr;
     private List<Employee> employees = new ArrayList<>();
 
     public Company() {
