@@ -10,13 +10,13 @@ public class ComputerResponseGenerator {
         // tlumaczenie 1-3 na r/p/s
         String name;
         if (userInput == 1) {
-            name = "rock";
+            name = "kamień";
         } else if (userInput == 2){
-            name = "paper";
+            name = "papier";
         } else if (userInput == 3){
-            name = "scissors";
+            name = "nożyce";
         } else {
-            name = "end";
+            name = "koniec";
         }
         return name;
     }

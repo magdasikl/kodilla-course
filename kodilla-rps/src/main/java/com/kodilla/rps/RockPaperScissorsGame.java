@@ -11,7 +11,7 @@ public class RockPaperScissorsGame {
 
     public RockPaperScissorsGame(Player player) {
         this.player = player;
-        this.computer = new Player("Computer");
+        this.computer = new Player("Komputer");
         this.round = 1;
     }
 
@@ -23,19 +23,20 @@ public class RockPaperScissorsGame {
     public String decide(String move, String computerMove) {
 
         if (move.equals(computerMove)) {
-            return "No one wins";
+            this.round +=1;
+            return "Nikt nie wygrał";
         }
 
-        if (move.equals("scissors") && computerMove.equals("paper")) {
+        if (move.equals("nożyce") && computerMove.equals("papier")) {
             updateWins(player);
             return getResult(player,computer);
-        } else if (move.equals("paper") && computerMove.equals("rock")) {
+        } else if (move.equals("papier") && computerMove.equals("kamień")) {
             updateWins(player);
             return getResult(player,computer);
-        } else if (move.equals("rock") && computerMove.equals("scissors")) {
+        } else if (move.equals("kamień") && computerMove.equals("nożyce")) {
             updateWins(player);
             return getResult(player, computer);
-        } else if (move.equals("end")){
+        } else if (move.equals("koniec")){
             return "To nie jest liczba z zakresu 1-3";
         } else {
             updateWins(computer);
@@ -48,7 +49,7 @@ public class RockPaperScissorsGame {
     }
 
     private String getResult(Player playerWin, Player playerLost) {
-        String name =  "Round number: " + round + " Winner: " + playerWin.getName() + " (" + playerWin.getWins() + ") Loser: " + playerLost.getName() + " (" +playerLost.getWins()+ ")";
+        String name =  "Runda numer: " + round + " Zwyciężył  " + playerWin.getName() + " (" + playerWin.getWins() + ") Przegrał: " + playerLost.getName() + " (" +playerLost.getWins()+ ")";
         this.round +=1;
         return name;
     }

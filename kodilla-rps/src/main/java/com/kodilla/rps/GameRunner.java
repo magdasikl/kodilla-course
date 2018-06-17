@@ -8,9 +8,12 @@ public class GameRunner {
         // wyjac ze Scannera wcisniety klawisz
         // klawisz powinien byc 1-3
         // jezeli klawisz jest inny to zamyka gre
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj swoje imię");
+        String  namePlayer = scanner.nextLine();
 
         // inicjalizacja gry
-        Player player = new Player("Ania");
+        Player player = new Player(namePlayer);
         ComputerResponseGenerator computerResponseGenerator = new ComputerResponseGenerator();
         RockPaperScissorsGame game = new RockPaperScissorsGame(player);
         int i;
@@ -19,13 +22,17 @@ public class GameRunner {
         String computerMove;
         String gameDecision;
         // wczytujemy ruch uzytkownika
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("How many rounds?");
+
+        System.out.println(namePlayer + " ile gramy rund? ");
+
         try {
             int e = scanner.nextInt();
+            System.out.println("klawisz 1 - zagranie \"kamień\",\n" +
+                    "klawisz 2 - zagranie \"papier\",\n" +
+                    "klawisz 3 - zagranie \"nożyce\"");
 
             for (int k = 0; k<e; k++) {
-                System.out.println("Round: " + game.getRound());
+                System.out.println("Runda: " + game.getRound());
                 System.out.print("Wpisz liczbę: ");
                 i = scanner.nextInt();
                 //System.out.println("liczba " + i);
@@ -41,6 +48,7 @@ public class GameRunner {
                 // decydujemy kto wygrał
                 gameDecision = game.decide(move, computerMove);
                 // zwracamy uzytkownikowi komunikat
+                System.out.println("Wybrałeś: " + move + ", Komputer wylosował: " + computerMove);
                 System.out.println(gameDecision);
             }
 
