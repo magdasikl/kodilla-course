@@ -13,28 +13,37 @@ public class GameRunner {
         Player player = new Player("Ania");
         ComputerResponseGenerator computerResponseGenerator = new ComputerResponseGenerator();
         RockPaperScissorsGame game = new RockPaperScissorsGame(player);
-
-
+        int i;
+        String move;
+        int computerInput;
+        String computerMove;
+        String gameDecision;
         // wczytujemy ruch uzytkownika
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Wpisz liczbę: ");
+        System.out.println("How many rounds?");
         try {
-            int i = scanner.nextInt();
-            //System.out.println("liczba " + i);
+            int e = scanner.nextInt();
 
-            // tlumaczymy ruch uzytkownika na kamien/papier/nozyce
-            String move = computerResponseGenerator.translateInput(i);
-            // generujemy ruch komputera
-            int computerInput = computerResponseGenerator.getRandomResponse();
+            for (int k = 0; k<e; k++) {
+                System.out.println("Round: " + game.getRound());
+                System.out.print("Wpisz liczbę: ");
+                i = scanner.nextInt();
+                //System.out.println("liczba " + i);
 
-            // tlumaczymy ruch komputera na kamien/papier/nozyce
-            String computerMove = computerResponseGenerator.translateInput(computerInput);
+                // tlumaczymy ruch uzytkownika na kamien/papier/nozyce
+                move = computerResponseGenerator.translateInput(i);
+                computerInput = computerResponseGenerator.getRandomResponse();
 
-            // decydujemy kto wygrał
-            String gameDecision = game.decide(move, computerMove);
+                // tlumaczymy ruch komputera na kamien/papier/nozyce
+                computerMove = computerResponseGenerator.translateInput(computerInput);
 
-            // zwracamy uzytkownikowi komunikat
-            System.out.println(gameDecision);
+                // generujemy ruch komputera
+                // decydujemy kto wygrał
+                gameDecision = game.decide(move, computerMove);
+                // zwracamy uzytkownikowi komunikat
+                System.out.println(gameDecision);
+            }
+
         } catch (Exception e){
             System.out.println("To nie jest liczba tylko znak");
         }
