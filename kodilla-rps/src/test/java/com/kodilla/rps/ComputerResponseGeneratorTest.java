@@ -22,10 +22,10 @@ public class ComputerResponseGeneratorTest {
         int userInput = 1;
 
         // when
-        String rockInput = generator.translateInput(userInput);
+        KeyResult rockInput = generator.translate(Integer.toString(userInput));
 
         // then
-        Assert.assertEquals("rock", rockInput);
+        Assert.assertEquals(GameMove.Rock, rockInput.move);
 
     }
 
@@ -34,9 +34,9 @@ public class ComputerResponseGeneratorTest {
         // given
 
         // when
-        int input = generator.getRandomResponse();
+        GameMove move = generator.getRandomResponse();
 
         // then
-        Assert.assertTrue(Arrays.asList(1,2,3).contains(input));
+        Assert.assertTrue(Arrays.asList(GameMove.values()).contains(move));
     }
 }

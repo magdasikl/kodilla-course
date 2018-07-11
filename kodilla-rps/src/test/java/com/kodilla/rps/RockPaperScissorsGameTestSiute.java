@@ -11,30 +11,24 @@ public class RockPaperScissorsGameTestSiute {
     public void rockShouldBeatScissors() {
         //Given
         RockPaperScissorsGame game = new RockPaperScissorsGame(player);
-        String move = "rock";
-        String computerMove = "scissors";
 
         //When
-        String message = game.decide(move, computerMove);
+        String message = game.decide(GameMove.Rock, GameMove.Scissors);
 
         //Then
         Assert.assertEquals(1, game.getPlayer().getWins());
-        Assert.assertEquals("Winner: Player: Ania(1)", message);
     }
-
+//
     @Test
     public void scissorsShouldBeatPaper() {
         //Given
         RockPaperScissorsGame game = new RockPaperScissorsGame(player);
-        String move = "scissors";
-        String computerMove = "paper";
 
         //When
-        String message = game.decide(move,computerMove);
+        String message = game.decide(GameMove.Scissors,GameMove.Paper);
 
         //Then
         Assert.assertEquals(1, game.getPlayer().getWins() );
-        Assert.assertEquals("Winner: Player: Ania(1)",message);
 
     }
 
@@ -42,15 +36,12 @@ public class RockPaperScissorsGameTestSiute {
     public void paperShouldBeatRock() {
         //Given
         RockPaperScissorsGame game = new RockPaperScissorsGame(player);
-        String move = "paper";
-        String computerMove = "rock";
 
         //When
-        String message = game.decide(move,computerMove);
+        String message = game.decide(GameMove.Paper,GameMove.Rock);
 
         //Then
         Assert.assertEquals(1,game.getPlayer().getWins());
-        Assert.assertEquals("Winner: Player: Ania(1)", message);
     }
 
 }

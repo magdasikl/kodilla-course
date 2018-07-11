@@ -5,26 +5,34 @@ import java.util.Random;
 
 public class ComputerResponseGenerator {
 
-
-    public String translateInput(int userInput) {
-        // tlumaczenie 1-3 na r/p/s
-        String name;
-        if (userInput == 1) {
-            name = "kamień";
-        } else if (userInput == 2){
-            name = "papier";
-        } else if (userInput == 3){
-            name = "nożyce";
+    public GameMove translateMove(String userInput) {
+        if (userInput.equals("1")) {
+            return GameMove.Rock;
+        } else if (userInput.equals("2")) {
+            return GameMove.Paper;
+        } else if (userInput.equals("3")) {
+            return GameMove.Scissors;
         } else {
-            name = "koniec";
+            throw new IllegalArgumentException("Expected number 1,2 or 3");
         }
-        return name;
     }
 
-    public int getRandomResponse() {
+    public KeyResult translate(String userInput) {
+        if (userInput.equals("1") || userInput.equals("2") || userInput.equals("3")) {
+            return new KeyResult(Command.Move, translateMove(userInput));
+        } else if (userInput.equals("x")) {
+            return new KeyResult(Command.Exit);
+        } else if (userInput.equals("n")) {
+            return new KeyResult(Command.NewGame);
+        } else {
+            return new KeyResult(Command.Error);
+        }
+    }
+
+    public GameMove getRandomResponse() {
         // ma zwrocic od 1 do 3
         Random generator = new Random();
-        int gen = generator.nextInt(3)+1;
-        return gen;
+        int randomized = generator.nextInt(3);
+        return GameMove.values()[randomized];
     }
 }
