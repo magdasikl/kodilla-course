@@ -22,6 +22,7 @@ public class GameMoveTest {
        Assert.assertTrue(result);
     }
 
+
     @Test
     public void rockDontBeatsRock() {
         Assert.assertFalse(Rock.beats(Rock));

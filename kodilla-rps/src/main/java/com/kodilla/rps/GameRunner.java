@@ -20,7 +20,7 @@ public class GameRunner {
             RockPaperScissorsGame game = new RockPaperScissorsGame(player);
 
             // wczytujemy ruch uzytkownika
-            System.out.println(namePlayer + " ile gramy losowań? ");
+            System.out.println(namePlayer + " do ilu gramy wygranych? ");
 
             try {
                 int e = scanner.nextInt();
@@ -29,7 +29,8 @@ public class GameRunner {
                         "klawisz 3 - zagranie \"nożyce\",\n" +
                         "klawisz x - koniec gry");
 
-                for (int k = 0; k < e; k++) {
+ //               for (int k = 0; k < e; k++) {
+                    do{
                     System.out.println("Runda: " + game.getRound());
 
                     GameMove humanMove = null;
@@ -60,10 +61,10 @@ public class GameRunner {
 //                 zwracamy uzytkownikowi komunikat
 
                     System.out.println(gameDecision);
-                    if (k < e - 1) {
-                        System.out.println("Grasz dalej? Jeśli nie naciśnij \"x\"");
+                    if (player.getWins() < e - 1 && game.getComputer().getWins() < e-1) {
+                            System.out.println("Grasz dalej? Jeśli nie naciśnij \"x\"");
                     }
-                }
+                    }while(player.getWins()!= e && game.getComputer().getWins() != e );
                 game.printScore();
 
                 System.out.println("Grasz jeszcze raz? Wpisz \"n\"");
