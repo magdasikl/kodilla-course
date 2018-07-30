@@ -1,16 +1,13 @@
 package com.kodilla.testing.library;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 
 public class BookDirectoryTestSuite {
 
@@ -100,9 +97,11 @@ public class BookDirectoryTestSuite {
         LibraryUser userLibrary1 = new LibraryUser("Anna", "Kowalska", "7856349976" );
         LibraryUser userLibrary2 = new LibraryUser("Anka", "Kowalska", "7856334976" );
         LibraryUser userLibrary3 = new LibraryUser("Wanda", "Kowalska", "1236349976" );
+
         List<Book> resultListOf0Books = new ArrayList<Book>();
         List<Book> resultListOf1Book = generateListOfNBooks(1);
         List<Book> resultListOf5Book = generateListOfNBooks(5);
+
         when(libraryDatabaseMock.listBooksInHandsOf(userLibrary1)).thenReturn(resultListOf0Books);
         when(libraryDatabaseMock.listBooksInHandsOf(userLibrary2)).thenReturn(resultListOf1Book);
         when(libraryDatabaseMock.listBooksInHandsOf(userLibrary3)).thenReturn(resultListOf5Book);

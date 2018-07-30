@@ -12,7 +12,6 @@ public interface LibraryDatabase {
     // try to rent a book for libraryUser
     // returns true when success
     // and returns false when book is unavailable to rent
-    boolean rentABook(LibraryUser libraryUser, Book book);
 
     // return all books borrowed by libraryUser to the library
     // returns number of books returned back
