@@ -34,8 +34,8 @@ public class ArrayOperationsTestSuite {
         number[19] = 2;
 
 //        Whem
-        ArrayOperations arrayOperations = new ArrayOper();
-        OptionalDouble number1 = arrayOperations.getAverage(number);
+        ArrayOperations.getAverage(number);
+        OptionalDouble number1 = ArrayOperations.getAverage(number);
         OptionalDouble number2 = OptionalDouble.of(3.75);
 
 //        Then
