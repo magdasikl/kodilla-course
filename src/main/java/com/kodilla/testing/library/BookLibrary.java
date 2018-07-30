@@ -1,7 +1,6 @@
 package com.kodilla.testing.library;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class BookLibrary {
@@ -28,22 +27,24 @@ public class BookLibrary {
 
     public List<Book> listBooksInHandsOf(LibraryUser libraryUser){
 
+        return libraryDatabase.listBooksInHandsOf(libraryUser);
 
-        RentedBook rB = new RentedBook (new Book("Krzyżacy", "Sienkiewicz",1999),libraryUser);
-        RentedBook rB2 = new RentedBook (new Book("W pustyni", "Sienkiewicz",1999),libraryUser);
 
-        List<RentedBook> listAllRentedBook = new LinkedList<>();
-        listAllRentedBook.add(rB);
-        listAllRentedBook.add(rB2);
-
-        List<Book> rentBook = new LinkedList<>();
-        for (int a=0; a<listAllRentedBook.size(); a++) {
-            if (listAllRentedBook.get(a).getLibraryUser().equals(libraryUser)){
-                rentBook.add(listAllRentedBook.get(a).getBook());
-            }
-
-        }
-                return rentBook;
+//        RentedBook rB = new RentedBook (new Book("Krzyżacy", "Sienkiewicz",1999),libraryUser);
+//        RentedBook rB2 = new RentedBook (new Book("W pustyni", "Sienkiewicz",1999),libraryUser);
+//
+//        List<RentedBook> listAllRentedBook = new LinkedList<>();
+//        listAllRentedBook.add(rB);
+//        listAllRentedBook.add(rB2);
+//
+//        List<Book> rentBook = new LinkedList<>();
+//        for (int a=0; a<listAllRentedBook.size(); a++) {
+//            if (listAllRentedBook.get(a).getLibraryUser().equals(libraryUser)){
+//                rentBook.add(listAllRentedBook.get(a).getBook());
+//            }
+//
+//        }
+//                return rentBook;
     }
 
 

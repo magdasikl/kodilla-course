@@ -94,6 +94,8 @@ public class BookDirectoryTestSuite {
         @Test
     public void testListBooksInHandsOf() {
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary  bookLibrary = new BookLibrary(libraryDatabaseMock);
+
         LibraryUser userLibrary1 = new LibraryUser("Anna", "Kowalska", "7856349976" );
         LibraryUser userLibrary2 = new LibraryUser("Anka", "Kowalska", "7856334976" );
         LibraryUser userLibrary3 = new LibraryUser("Wanda", "Kowalska", "1236349976" );
@@ -107,9 +109,9 @@ public class BookDirectoryTestSuite {
         when(libraryDatabaseMock.listBooksInHandsOf(userLibrary3)).thenReturn(resultListOf5Book);
 
 //        when
-        List<Book> theListUserOfBooks1 = libraryDatabaseMock.listBooksInHandsOf(userLibrary1);
-        List<Book> theListUserOfBooks2 = libraryDatabaseMock.listBooksInHandsOf(userLibrary2);
-        List<Book> theListUserOfBooks3 = libraryDatabaseMock.listBooksInHandsOf(userLibrary3);
+        List<Book> theListUserOfBooks1 = bookLibrary.listBooksInHandsOf(userLibrary1);
+        List<Book> theListUserOfBooks2 = bookLibrary.listBooksInHandsOf(userLibrary2);
+        List<Book> theListUserOfBooks3 = bookLibrary.listBooksInHandsOf(userLibrary3);
 
 //        then
         assertEquals(0, theListUserOfBooks1.size());
