@@ -55,13 +55,25 @@ class CreateStatistics implements Statistics{
         //liczbę użytkowników,
         numberOfUsers = listOfUsers.size();
         //średnią liczbę postów na użytkownika,
-        avgPostUser = numberOfPosts/numberOfUsers;
+        if (numberOfPosts!=0 && numberOfUsers!=0) {
+            avgPostUser = numberOfPosts / numberOfUsers;
+        }else{
+                avgPostUser = 0;
+        }
         //liczbę komentarzy
         numberOfComments = statistics.commentsCount();
         //średnią liczbę komentarzy na użytkownika
-        avgComUser = numberOfComments/numberOfUsers;
+        if(numberOfComments!=0 && numberOfUsers!=0) {
+            avgComUser = numberOfComments / numberOfUsers;
+        }else{
+            avgComUser = 0;
+        }
         //średnią liczbę komentarzy na post
-        avgComPost = numberOfComments/numberOfPosts;
+        if(numberOfComments!=0 && numberOfPosts !=0) {
+            avgComPost = numberOfComments / numberOfPosts;
+        }else{
+            avgComPost = 0;
+        }
     }
 
     public String showStatisctics(){
