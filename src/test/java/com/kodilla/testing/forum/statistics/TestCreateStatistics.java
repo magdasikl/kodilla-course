@@ -78,26 +78,24 @@ public class TestCreateStatistics {
         Assert.assertFalse(testStat.commentsCount()>testStat.postsCount());
     }
 
-//    @Test
-//    public void testNumbersCommentsPosts() {
-//
-//        //Given
-//        when(statisticsMock.usersnames()).thenReturn(listOfUser);
-//        when(statisticsMock.postsCount()).thenReturn(100);
-//        when(statisticsMock.commentsCount()).thenReturn(10);
-//
-//        //When
-//        CreateStatistics testStat = new CreateStatistics();
-//        testStat.calculateAdvStatistics(statisticsMock);
-//
-//        //Then
-//        Assert.assertEquals(0, testStat.getAvgComPost());
-//        Assert.assertEquals(0, testStat.getAvgComUser());
-//        Assert.assertEquals(10, testStat.getAvgPostUser());
-//        Assert.assertTrue(testStat.commentsCount()<testStat.postsCount());
-//        Assert.assertFalse(testStat.commentsCount()>testStat.postsCount());
-//    }
-//
+    @Test
+    public void testNumbersCommentsPosts() {
+
+        //Given
+        when(statisticsMock.usersnames()).thenReturn(listOfUser);
+        when(statisticsMock.postsCount()).thenReturn(10);
+        when(statisticsMock.commentsCount()).thenReturn(1000);
+
+        //When
+        CreateStatistics testStat = new CreateStatistics();
+        testStat.calculateAdvStatistics(statisticsMock);
+
+        //Then
+        Assert.assertEquals(100, testStat.getAvgComPost());
+        Assert.assertFalse(testStat.commentsCount()<testStat.postsCount());
+        Assert.assertTrue(testStat.commentsCount()>testStat.postsCount());
+    }
+
 //    @Test
 //    public void testNumbersComents() {
 //        //Given
