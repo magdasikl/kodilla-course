@@ -7,15 +7,15 @@ import java.util.List;
 
 @NamedQuery(
         name = "Employee.searchWorkerByName",
-        query = "FROM Employee WHERE lastname = :LASTNAME"
+        query = "FROM Employee WHERE lastname LIKE :LASTNAME"
 )
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
-    private int id;
     private String firstname;
     private String lastname;
     private List<Company> companies = new ArrayList<>();
+    private int id;
 
     public Employee() {
     }

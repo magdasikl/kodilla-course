@@ -1,13 +1,16 @@
 package com.kodilla.hibernate.manytomany;
 
+import org.springframework.stereotype.Service;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 @NamedNativeQuery(
         name = "Company.threeCharactersNameCompany",
         query = "SELECT * FROM COMPANIES WHERE company_name LIKE :SRK",
+//        query = "SELECT * FROM COMPANIES WHERE company_name LIKE :ARG",
         resultClass = Company.class
 )
 @Entity
