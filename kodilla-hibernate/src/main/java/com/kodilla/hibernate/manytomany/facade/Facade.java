@@ -22,29 +22,35 @@ public class Facade {
     private EmployeeDao employeeDao;
 
     public void processFacade(final String company, final String employee) throws FacadeProcessingException {
+        boolean wasError = false;
 
         try {
 
             if (company != null) {
                 List<Company> listCompany = companyDao.threeCharactersNameCompany("%" + company + "%");
                String t = listCompany.stream()
-                        .map(company1 -> company1.getName().toString())
+                        .map(company1 -> company1.getName())
                         .collect(Collectors.joining(", "));
                 LOGGER.info("Lista wyszukiwanych firm: " + t );
+            }
+            else {
+                wasError = true;
+                throw new FacadeProcessingException(FacadeProcessingException.ERR_NOT_COMPANY_NAME);
             }
             if (employee != null) {
                 List<Employee> listEmployee = employeeDao.searchWorkerByName("%" + employee + "%");
                 String k = listEmployee.stream()
-                        .map(employee1 -> employee1.getLastname().toString())
+                        .map(employee1 -> employee1.getLastname())
                         .collect(Collectors.joining(", "));
                 LOGGER.info("Lista wyszukiwanych pracowników: " + k );
+            } else {
+                wasError = true;
+                throw new FacadeProcessingException(FacadeProcessingException.ERR_NOT_EMPLOYEE_NAME);
             }
+
         } finally {
-            if (company == null) {
-                LOGGER.error(FacadeProcessingException.ERR_NOT_COMPANY_NAME);
-            }
-            if (employee == null) {
-                LOGGER.error(FacadeProcessingException.ERR_NOT_EMPLOYEE_NAME);
+            if (wasError ){
+                LOGGER.error("Brak danych");
             }
         }
     }
