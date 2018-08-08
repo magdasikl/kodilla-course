@@ -1,8 +1,9 @@
-package com.kodilla.patterns2.com.kodilla.patterns.facade;
+package com.kodilla.patterns2.facade;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Order {
     private final Long orderId;

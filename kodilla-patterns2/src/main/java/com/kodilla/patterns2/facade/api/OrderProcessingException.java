@@ -1,4 +1,4 @@
-package com.kodilla.patterns2.com.kodilla.patterns.facade.api;
+package com.kodilla.patterns2.facade.api;
 
 public class OrderProcessingException extends Exception{
     public static String ERR_NOT_AUTHORISED = "User is not authorised";
