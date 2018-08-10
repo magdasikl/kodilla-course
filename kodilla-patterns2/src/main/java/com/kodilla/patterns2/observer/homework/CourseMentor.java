@@ -2,7 +2,6 @@ package com.kodilla.patterns2.observer.homework;
 
 public class CourseMentor implements Mentor {
     public final String username;
-    public int updateCount;
 
     public CourseMentor(String username) {
         this.username = username;
@@ -17,7 +16,4 @@ public class CourseMentor implements Mentor {
         return username;
     }
 
-    public int getUpdateCount() {
-        return updateCount;
-    }
 }
