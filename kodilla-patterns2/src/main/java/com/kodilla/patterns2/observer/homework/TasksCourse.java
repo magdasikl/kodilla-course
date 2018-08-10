@@ -16,7 +16,7 @@ public class TasksCourse implements Mentoring {
 
     public void addTask(String message){
         messages.add(message);
-        notifyMentoring();
+        notifyMentors();
     }
 
     @Override
@@ -25,7 +25,7 @@ public class TasksCourse implements Mentoring {
     }
 
     @Override
-    public void notifyMentoring() {
+    public void notifyMentors() {
         for (Mentor mentor : mentors){
             mentor.update(this);
         }
