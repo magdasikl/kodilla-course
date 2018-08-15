@@ -8,11 +8,11 @@ public class MapWithTitles {
 //                .map(s -> s+"! ")
 //                .forEach(System.out::print);print
 
-        SalesRequestRetriever salesRequestRetriever = new SalesRequestRetriever();
-        SalesRequest salesRequest = salesRequestRetriever.retrieve();
+        SellRequestRetriever sellRequestRetriever = new SellRequestRetriever();
+        SellRequest sellRequest = sellRequestRetriever.retrieve();
 
-        ProductOrderService productOrderService = new ProductOrderService(new BookSalesProduct(), new Repository());
-        productOrderService.process(salesRequest);
+        ProductOrderService productOrderService = new ProductOrderService(new BookSellProduct(), new Repository());
+        productOrderService.process(sellRequest);
 
 
 

@@ -1,22 +1,22 @@
 package com.kodilla.good.patterns.challenges;
 
 public class ProductOrderService {
-    private SalesProduct salesProduct;
-    private SalesRepository salesRepository;
+    private SellProduct sellProduct;
+    private OrderRepository orderRepository;
 
-    public ProductOrderService(SalesProduct salesProduct, SalesRepository salesRepository) {
-        this.salesProduct = salesProduct;
-        this.salesRepository = salesRepository;
+    public ProductOrderService(SellProduct sellProduct, OrderRepository orderRepository) {
+        this.sellProduct = sellProduct;
+        this.orderRepository = orderRepository;
     }
 
-    public SalesDto process(SalesRequest salesRequest){
-        boolean isSold = salesProduct.sales(salesRequest.getUser(),salesRequest.getSalesDate(),salesRequest.getQuantity(),salesRequest.getPrice());
-        if(isSold) {
-            salesRepository.createRepository(salesRequest.getUser(),salesRequest.getSalesDate());
-            return new SalesDto(salesRequest.getUser(), true);
+    public SellDto process(SellRequest sellRequest){
+        boolean isOrdered = sellProduct.order(sellRequest.getUser(), sellRequest.getSalesDate(), sellRequest.getQuantity(), sellRequest.getPrice());
+        if(isOrdered) {
+            orderRepository.createOrder(sellRequest.getUser(), sellRequest.getSalesDate());
+            return new SellDto(sellRequest.getUser(), true);
         } else {
             System.out.println("nie udało się");
-            return new SalesDto(salesRequest.getUser(), false);
+            return new SellDto(sellRequest.getUser(), false);
         }
     }
 }

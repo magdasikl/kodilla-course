@@ -1,10 +1,10 @@
 package com.kodilla.good.patterns.challenges;
 
-public class SalesDto {
+public class SellDto {
     public User user;
     public boolean isSold;
 
-    public SalesDto(User user, boolean isSold) {
+    public SellDto(User user, boolean isSold) {
         this.user = user;
         this.isSold = isSold;
     }
