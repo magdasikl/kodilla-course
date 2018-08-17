@@ -1,26 +1,36 @@
 package com.kodilla.sudoku;
 
+import java.util.TreeSet;
+
+/**
+ * Zadaniem elementu jest orzetrzymywanie stanu pojedyńczej komórki. Przez stan rozumiemy wypełnioną liczbę albo jej niewypełnioną wartość EMPTY albo kolekcje możliwych wartości.
+ * Nie może być tak że komórka ma wartość i jeszcze możliwości oraz brak przy pustym zbiorze możliwości. To ostatnie oznacza błąd w ułożeniu.
+ */
 public class SudokuElement {
 
-    public static int EMPTY = -1;
+    /**
+     * Oznacza brak wybranej liczby.
+     */
+    public static final int EMPTY = -1;
 
     private int value;
 
-    public SudokuElement() {
-        value = EMPTY;
+    /**
+     * Możliwości w tym polu.
+     */
+    private TreeSet<Integer> possibilities;
 
+    public SudokuElement() {
+        this.value = EMPTY;
+        this.possibilities = new TreeSet<>();
+        for (int i = 1; i <= SudokuBoard.SIZE; i++) {
+            this.possibilities.add(i);
+        }
     }
 
-    public static SudokuElement parse(String value) {
-        int i;
-        try {
-            i = Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            i = EMPTY;
-        }
-        SudokuElement element = new SudokuElement();
-        element.value = i;
-        return element;
+    public SudokuElement(SudokuElement element) {
+        this.value = element.value;
+        this.possibilities = new TreeSet<>(element.possibilities);
     }
 
     public int getValue() {
@@ -31,16 +41,7 @@ public class SudokuElement {
         this.value = value;
     }
 
-    public boolean isEmpty() {
-        return this.value == EMPTY;
-    }
-
-    @Override
-    public String toString() {
-        if (isEmpty()) {
-            return "0";
-        } else {
-            return Integer.toString(value);
-        }
+    public TreeSet<Integer> getPossibilities() {
+        return possibilities;
     }
 }

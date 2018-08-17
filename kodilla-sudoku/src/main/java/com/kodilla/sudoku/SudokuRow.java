@@ -1,20 +1,30 @@
 package com.kodilla.sudoku;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SudokuRow {
-    List<SudokuElement> elements;
+
+    private ArrayList<SudokuElement> elements;
 
     public SudokuRow() {
-
-        elements = new ArrayList<>();
-        for (int e =0; e < 9; e++){
-            elements.add(new SudokuElement());
+        this.elements = new ArrayList();
+        for (int i = 0; i < SudokuBoard.SIZE; i++) {
+            this.elements.add(new SudokuElement());
         }
     }
 
-    public List<SudokuElement> getElements() {
+    /**
+     * Konstruktor kopiujący.
+     * @param sudokuRow Oryginał.
+     */
+    public SudokuRow(SudokuRow sudokuRow) {
+        this.elements = new ArrayList();
+        for (SudokuElement element : sudokuRow.elements) {
+            this.elements.add(new SudokuElement(element));
+        }
+    }
+
+    public ArrayList<SudokuElement> getElements() {
         return elements;
     }
 }

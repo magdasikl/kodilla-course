@@ -1,133 +1,216 @@
 package com.kodilla.sudoku;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 public class SudokuBoard {
-    List<SudokuRow> rows;
+
+    public static final int SIZE = 9;
+
+    private ArrayList<SudokuRow> rows;
 
     public SudokuBoard() {
-        rows = new ArrayList<>();
-        for (int row = 0; row < 9; row++) {
-            rows.add(new SudokuRow());
+        this.rows = new ArrayList<>(9);
+        for (int i = 0; i < SIZE; i++) {
+            this.rows.add(new SudokuRow());
         }
     }
 
-    public static void main(String[] args) {
-        SudokuBoard board = new SudokuBoard();
-        System.out.println(board.toString());
-        board.validateBoxes();
-        board.validateRows();
+    /**
+     * Konstruktor kopiujący.
+     *
+     * @param sudokuBoard Oryginał.
+     */
+    public SudokuBoard(SudokuBoard sudokuBoard) {
+        this.rows = new ArrayList<>(9);
+        for (SudokuRow row : sudokuBoard.rows) {
+            this.rows.add(new SudokuRow(row));
+        }
     }
 
-    public SudokuElement get(int row, int col) {
-        SudokuRow sudokuRow = rows.get(row);
-        List<SudokuElement> elements = sudokuRow.getElements();
-        return elements.get(col);
+    public void setCell(int row, int col, int value) {
+        SudokuElement target = getCell(row, col);
+
+        // sprawdzanie czy wcześniej nie została usunięta możliwość
+        if (target.getPossibilities().isEmpty()) {
+            if (target.getValue() != value) {
+                throw new IllegalStateException("Wartość w polu: [" + row + "," + col + "] została już przypisana: " + target.getValue() + " i nie można przypisać: " + value);
+            }
+        } else if (!target.getPossibilities().contains(value)) {
+            throw new IllegalStateException("Nie można ustawić w polu: [" + row + "," + col + "] wartości: " + value + ", ponieważ ta możliwość została już usunięta");
+        } else {
+            target.setValue(value);
+            target.getPossibilities().clear();
+        }
+
+        // usuwanie możliwości w innych komórkach w danym wierszu
+        List<SudokuElement> rowElements = this.rows.get(row).getElements();
+        for (int i = 0; i < SIZE; i++) {
+            SudokuElement element = rowElements.get(i);
+            element.getPossibilities().remove(value);
+        }
+
+        // usuwanie możliwości w innych komórkach w danej kolumnie
+        for (int i = 0; i < SIZE; i++) {
+            SudokuElement element = this.rows.get(i).getElements().get(col);
+            element.getPossibilities().remove(value);
+        }
+
+        // usuwanie możliwości w innych komórkach w małym kwadracie
+        int k = boxStart(row);
+        int l = boxStart(col);
+        for (int i = k; i < k + 3; i++) {
+            for (int j = l; j < l + 3; j++) {
+                SudokuElement element = getCell(i, j);
+                element.getPossibilities().remove(value);
+            }
+        }
     }
 
-//    public boolean validateCol() {
-//        for (int col = 0; col < 9; col++) {
-//            HashSet<Integer> set = new HashSet<>();
-//            SudokuRow sudokuRow = rows.get(col);
-//
-//            List<SudokuElement> elements = sudokuRow.getElements();
-//            for (int elem = 0; elem < elements.size(); elem++) {
-//                SudokuElement sudokuElement = elements.get(col);
-//                if (!sudokuElement.isEmpty()) {
-//                    if (set.contains(sudokuElement.getValue())) {
-//                        return false;
-//                    }
-//                    set.add(sudokuElement.getValue());
-//                }
-//            }
-//
-//        }
-//        return false;
-//    }
+    // 0,1,2 -> 0
+    // 3,4,5 -> 3
+    // 6,7,8 -> 6
+    private int boxStart(int i) {
+        return (i / 3) * 3;
+    }
 
-    public boolean validateRows() {
-        for (int row = 0; row < rows.size(); row++) {
-            HashSet<Integer> set = new HashSet<>();
-            SudokuRow sudokuRow = rows.get(row);
-            SudokuElement sudokuElement;
-            List<SudokuElement> elements = sudokuRow.getElements();
-            for (int col = 0; col < elements.size(); col++) {
-                sudokuElement = elements.get(col);
-                if (!sudokuElement.isEmpty()) {
-                    if (set.contains(sudokuElement.getValue())) {
-                        return false;
+
+    /**
+     * Wyszukiwanie komórki z tylko jedną możliwością. Walidowanie czy wartości i pozostałe możliwości są poprawne.
+     *
+     * @return Czy sudoku zostało rozwiązane.
+     * @throws IllegalStateException Jeżeli sudoku posiada niepoprawny stan.
+     */
+    public boolean validateAndAssignValues() throws IllegalStateException {
+        boolean solved;
+        boolean changed;
+
+        do {
+            solved = true;
+            changed = false;
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    SudokuElement element = getCell(i, j);
+
+                    boolean emptyPossibilities = element.getPossibilities().isEmpty();
+                    boolean unassignedValue = SudokuElement.EMPTY == element.getValue();
+
+                    // walidacja - jeżeli brak możliwości i wartość nieustalona to jest źle
+                    if (emptyPossibilities && unassignedValue) {
+                        throw new IllegalStateException("Błąd w ułożeniu! Komórka [" + i + "," + j + "]");
                     }
-                    set.add(sudokuElement.getValue());
-                }
-//                System.out.print( row + " " +col +" | " );
-//                if (col == 8) {
-//                    System.out.println("\n");
-//                }
-             }
 
-        }
-        return true;
+                    // walidacja - jeżeli wartość jest ustalona i pozostały jeszcze możliwości to źle
+                    if (!unassignedValue && !emptyPossibilities) {
+                        throw new IllegalStateException("Błąd w ułożeniu!");
+                    }
+
+                    // jeżeli jest tylko jedna możliwość to ją ustawiamy
+                    if (element.getPossibilities().size() == 1) {
+                        Integer value = element.getPossibilities().iterator().next();
+                        setCell(i, j, value);
+                        changed = true;
+                    }
+
+                    if (SudokuElement.EMPTY == element.getValue()) {
+                        solved = false;
+                    }
+                }
+            }
+
+            // jezeli była zmiana to poszukujemy jeszcze raz czy kolejne kratki nie mają już tylko jednej możliwości
+        } while (changed);
+
+        return solved;
     }
 
-    public boolean validateBoxes() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                HashSet<Integer> set = new HashSet<>();
+    public BackTrackStep determineCellWithLowestPossibilities() {
+        SudokuElement best = null;
+        int row = -1;
+        int col = -1;
 
-                for (int k = 0; k < 3; k++) {
-                    for (int l = 0; l < 3; l++) {
-                        int row = i * 3 + k;
-                        int col = j * 3 + l;
-                        SudokuElement sudokuElement = get(row, col);
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                SudokuElement element = getCell(i, j);
 
-//                        System.out.printf("%d, %d\n",row,col );
+                // znajdowanie kratki która ma najmniej możliwości
+                if (element.getPossibilities().size() > 0) {
+                    if (best == null) {
+                        best = element;
+                        row = i;
+                        col = j;
+                    } else {
+                        if (element.getPossibilities().size() < best.getPossibilities().size()) {
+                            best = element;
+                            row = i;
+                            col = j;
+                        }
 
-                        if (!sudokuElement.isEmpty()) {
-                            if (set.contains(sudokuElement.getValue())) {
-                                return false;
-                            }
-                            set.add(sudokuElement.getValue());
+                        // 2 możliwości to najlepszy wynik jaki można uzyskać więc nie szukajmy dalej
+                        if (best.getPossibilities().size() == 2) {
+                            break;
                         }
                     }
                 }
-//                System.out.println();
             }
         }
 
-        return true;
+        TreeSet<Integer> possibilities = new TreeSet<>();
+        if (best != null) {
+            possibilities.addAll(best.getPossibilities());
+        } else {
+            System.out.println(this);
+        }
+        return new BackTrackStep(row, col, possibilities);
     }
+
+    //dostawanie się do elementu w danym wierszu i w danej kolumnie
+    public SudokuElement getCell(int row, int col) {
+        SudokuRow sudokuRow = this.rows.get(row);
+        SudokuElement sudokuElement = sudokuRow.getElements().get(col);
+        return sudokuElement;
+    }
+
+    // 1 2 3 | 4 5 6 | 7 8 9
+    // 4 5 6 | 7 8 9 | 1 2 3
+    // 7 8 9 | 1 2 3 | 4 5 6
+    // ------+-------+------
+    // 1 2 3 | 4 5 6 | 7 8 9
+    // 4 5 6 | 7 8 9 | 1 2 3
+    // 7 8 9 | 1 2 3 | 4 5 6
+    // ------+-------+------
+    // 1 2 3 | 4 5 6 | 7 8 9
+    // 4 5 6 | 7 8 9 | 1 2 3
+    // 7 8 9 | 1 2 3 | 4 5 6
+
 
     @Override
     public String toString() {
-        // 1 2 3 | 4 5 6 | 7 8 9
-        // 1 2 3 | 4 5 6 | 7 8 9
-        // 1 2 3 | 4 5 6 | 7 8 9
-        // ------+-------+------
-        // 1 2 3 | 4 5 6 | 7 8 9
-        // 1 2 3 | 4 5 6 | 7 8 9
-        // ------+-------+------
-        // 1 2 3 |   5 6 | 7 8 9
-        // 1 2 3 | 4 5 6 | 7 8 9
-        // 1 2 3 | 4 5 6 | 7 8 9
-
         StringBuilder builder = new StringBuilder();
-        for (int row = 0; row < rows.size(); row++) {
-            SudokuRow sudokuRow = rows.get(row);
 
-            List<SudokuElement> elements = sudokuRow.getElements();
-            for (int col = 0; col < elements.size(); col++) {
-                SudokuElement sudokuElement = elements.get(col);
+        for (int i = 0; i < SIZE; i++) {
+            SudokuRow sudokuRow = this.rows.get(i);
+
+            for (int j = 0; j < SIZE; j++) {
+                SudokuElement element = sudokuRow.getElements().get(j);
+
                 builder.append(" ");
-                builder.append(sudokuElement.toString());
-                if (col == 2 || col == 5) {
+                int value = element.getValue();
+                if (SudokuElement.EMPTY == value) {
+                    builder.append(" ");
+                } else {
+                    builder.append(value);
+                }
+
+                if (j == 2 || j == 5) {
                     builder.append(" |");
                 }
             }
+
             builder.append("\n");
 
-            if (row == 2 || row == 5) {
+            if (i == 2 || i == 5) {
                 builder.append(" ------+-------+------");
                 builder.append("\n");
             }
@@ -135,4 +218,5 @@ public class SudokuBoard {
 
         return builder.toString();
     }
+
 }
