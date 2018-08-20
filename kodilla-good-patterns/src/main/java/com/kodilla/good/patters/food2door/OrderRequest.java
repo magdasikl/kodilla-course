@@ -1,15 +1,11 @@
 package com.kodilla.good.patters.food2door;
 
 public class OrderRequest {
-    private AllDelivery allDelivery;
-    private AllProduckt allProduct;
+    private Delivery allDelivery;
+    private Product allProduct;
 
-    public OrderRequest(AllDelivery allDelivery, AllProduckt allProduct) {
-        this.allDelivery = allDelivery;
-        this.allProduct = allProduct;
-    }
 
-    public boolean request(){
+    public boolean request(Delivery allDelivery, Product allProduct){
         System.out.println("Zamówienie dla dostawcy: "+ allDelivery.getName()+ "Produkty: " + allProduct.getKindeOfProdukt() +" Cena: " + allProduct.getPrice() );
         return true;
     }

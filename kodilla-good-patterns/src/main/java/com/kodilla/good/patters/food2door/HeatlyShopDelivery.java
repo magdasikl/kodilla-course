@@ -1,10 +1,21 @@
 package com.kodilla.good.patters.food2door;
 
 public class HeatlyShopDelivery implements Delivery{
-    @Override
-    public AllDelivery nameDelivery() {
 
-        AllDelivery allDelivery = new AllDelivery("Heatly Shop",002);
-        return allDelivery;
+    private String name;
+    private int idDelivery;
+
+    public HeatlyShopDelivery(String name, int idDelivery) {
+        this.name = name;
+        this.idDelivery = idDelivery;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getIdDelivery() {
+        return idDelivery;
+    }
+
 }

@@ -1,11 +1,19 @@
 package com.kodilla.good.patters.food2door;
 
 public class ExtraFoodShopDelivery implements Delivery {
+    private String name;
+    private int idDelivery;
 
-    @Override
-    public AllDelivery nameDelivery() {
+    public ExtraFoodShopDelivery(String name, int idDelivery) {
+        this.name = name;
+        this.idDelivery = idDelivery;
+    }
 
-        AllDelivery allDelivery = new AllDelivery("Extra Food Shop",001);
-        return allDelivery;
+    public String getName() {
+        return name;
+    }
+
+    public int getIdDelivery() {
+        return idDelivery;
     }
 }
