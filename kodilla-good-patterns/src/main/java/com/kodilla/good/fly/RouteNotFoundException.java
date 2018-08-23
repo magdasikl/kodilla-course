@@ -1,4 +1,4 @@
-package com.kodilla.exception.com.kodilla.exception.fly;
+package com.kodilla.good.fly;
 
 public class RouteNotFoundException extends Exception {
     public RouteNotFoundException (final String message){

@@ -1,18 +1,12 @@
 package com.kodilla.stream.portfolio;
 
-import javafx.beans.binding.When;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.validation.constraints.Max;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 

@@ -1,4 +1,4 @@
-package com.kodilla.exception.com.kodilla.exception.fly;
+package com.kodilla.good.fly;
 
 import java.util.Objects;
 
