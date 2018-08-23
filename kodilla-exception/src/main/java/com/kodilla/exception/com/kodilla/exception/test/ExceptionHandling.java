@@ -14,7 +14,7 @@ public class ExceptionHandling {
 //            System.out.println(zmienna);
 //        }
 //
-        Flight flight = new Flight("Katowice", "Mascov") ;
+        Flight flight = new Flight("Katowice", "Barcelona") ;
         FlightSearch flightSearch = new FlightSearch();
         try {
             boolean flight1 = flightSearch.findFilght(flight);
