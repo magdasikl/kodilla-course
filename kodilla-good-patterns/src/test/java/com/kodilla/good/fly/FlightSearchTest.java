@@ -9,7 +9,7 @@ import java.util.List;
 public class FlightSearchTest {
 
     @Test
-    public void findDeparture() {
+    public void testfindDeparture() {
         //Given
         RepositoryFlight repositoryFlight = new RepositoryFlight();
         FlightSearch flightSearch = new FlightSearch(repositoryFlight);
@@ -20,7 +20,7 @@ public class FlightSearchTest {
 }
 
     @Test
-    public void findArrival() {
+    public void testfindArrival() {
         //Given
         RepositoryFlight repositoryFlight = new RepositoryFlight();
         FlightSearch flightSearch = new FlightSearch(repositoryFlight);
@@ -30,4 +30,15 @@ public class FlightSearchTest {
         Assert.assertEquals("Data lotu: 2018-08-15 z lotniska Gdańsk na lotnisko Kraków" ,listFlight.get(0).toString() );
 
     }
+    @Test
+    public void testflightWithChange() {
+        //Given
+        RepositoryFlight repositoryFlight = new RepositoryFlight();
+        FlightSearch flightSearch = new FlightSearch(repositoryFlight);
+        //When
+        List<String> listFlight = flightSearch.flightWithChange(1,"Gdańsk", "Kraków", LocalDate.of(2018,8,15));
+        //Then
+        Assert.assertEquals(5,listFlight.size() );
+    }
+
 }
