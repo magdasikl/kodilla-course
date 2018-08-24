@@ -7,4 +7,5 @@ public interface Product {
     public int getQuantity() ;
 
     public double getPrice() ;
+
 }
