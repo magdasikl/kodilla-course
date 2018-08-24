@@ -8,9 +8,9 @@ import testing2.config.WebDriveConfig;
 
 public class FacebookTestingApp {
     public static final String XPATH_WAIT_FOR = "//select[1]";
-    public static final String XPATH_SELECT1 = "//div[contains(@class, \"_58mq _5dbb\")]/div[2]/span/span/select[1]";
-    public static final String XPATH_SELECT2 = "//div[contains(@class, \"_58mq _5dbb\")]/div[2]/span/span/select[2]";
-    public static final String XPATH_SELECT3 = "//div[contains(@class, \"_58mq _5dbb\")]/div[2]/span/span/select[3]";
+    public static final String XPATH_SELECT1="//*[@id=\"day\"]";
+    public static final String XPATH_SELECT2 = "//*[@id=\"month\"]";
+    public static final String XPATH_SELECT3 = "//*[@id=\"year\"]";
 
     public static void main(String[] args) {
         WebDriver driver = WebDriveConfig.getDriver(WebDriveConfig.CHROME);

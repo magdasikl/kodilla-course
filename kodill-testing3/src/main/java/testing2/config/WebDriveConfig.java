@@ -16,7 +16,7 @@ public class WebDriveConfig {
         System.setProperty("webdriver.chrome.driver","c:\\Selenium-drivers\\Chrome\\chromedriver.exe");
 
 
-        if (driver.equals(FIREFOX) ) {
+        if (driver.equals(FIREFOX)|| driver.equals(CHROME)) {
             return new FirefoxDriver();
         } else if (driver.equals(CHROME)){
             return new ChromeDriver();
