@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import testing2.config.WebDriveConfig;
 
 import java.util.Random;
@@ -53,9 +54,17 @@ public class CrudAppTestSuite {
 
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed());
 
-//        driver.findElements(By.xpath("//from[@class=\"datatable_row\"]")).stream()
-//                .filter(anyForm -> anyForm.findElement(By.xpath()))
+        driver.findElements(By.xpath("//from[@class=\"datatable_row\"]")).stream()
+                .filter(anyForm -> anyForm.findElement(By.xpath(".//p[@class=\"datatable_field-value\"]"))
+                        .getText().equals(taskName))
+                .forEach(theForm -> {WebElement selectEnement = theForm.findElement(By.xpath(".//select[1]"));
+                    Select select = new Select(selectEnement);
+                    select.selectByIndex(1);
 
+                    WebElement buttonCreateCard = theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]"));
+                    buttonCreateCard.click();
+                });
+        Thread.sleep(5000);
     }
 
     @Test

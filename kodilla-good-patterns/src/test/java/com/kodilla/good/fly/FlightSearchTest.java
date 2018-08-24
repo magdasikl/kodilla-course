@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class FlightSearchTest {
 
@@ -36,9 +37,9 @@ public class FlightSearchTest {
         RepositoryFlight repositoryFlight = new RepositoryFlight();
         FlightSearch flightSearch = new FlightSearch(repositoryFlight);
         //When
-        List<String> listFlight = flightSearch.flightWithChange(1,"Gdańsk", "Kraków", LocalDate.of(2018,8,15));
+        Map<Flight, Flight> mapChangeFlight = flightSearch.flightWithChange(1,"Gdańsk", "Kraków", LocalDate.of(2018,8,15));
         //Then
-        Assert.assertEquals(5,listFlight.size() );
+        Assert.assertEquals(3,mapChangeFlight.size() );
     }
 
 }
