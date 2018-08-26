@@ -1,8 +1,8 @@
 package com.kodilla.good.fly;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class FlightSearch {
@@ -32,31 +32,31 @@ public class FlightSearch {
         return fly;
     }
 
-    public Map<Flight, Flight> flightWithChange (int numberOfChange, String nameDeparture, String nameArrival, LocalDate dateFly ) {
+    public List<FlightChange> flightWithChange (String nameDeparture, String nameArrival, LocalDate dateFly ) {
         List<Flight> listDeparture = findDeparture(dateFly, nameDeparture);
         List<Flight> listCh;
- //       List<String> listFlight = new ArrayList<>();
- //       String nameFly;
-        FlightChange flightChange = new FlightChange();
+        FlightChange flightChange;
+        List<FlightChange> flightChangeList = new ArrayList<>();
         for (Flight flight : listDeparture) {
+             flightChange = new FlightChange();
             if (flight.getArrivalAirport().equals(nameArrival)) {
-//               nameFly = "Lot bezpośredni z " + flight.getDepartureAiport() + " do " + flight.getArrivalAirport();
-//               listFlight.add(nameFly);
-                flightChange.putFlight(flight,flight);
+                flightChange.setFlight(flight);
             } else {
                 listCh = findDeparture(dateFly, flight.getArrivalAirport());
+                if (listCh.size()>0){
+                    flightChange.setFlight(flight);
+                }
                 for ( Flight flight1: listCh) {
                     if (flight1.getArrivalAirport().equals(nameArrival)) {
-//                        nameFly = ("Lot z "+ flight.getDepartureAiport() + " z przesiadką " + flight.getArrivalAirport()+ " do "+ flight1.getArrivalAirport());
-//                        listFlight.add(nameFly);
-                        flightChange.putFlight(flight1,flight);
+                        flightChange.putFlight(flight1);
                     }
-
                 }
             }
-
+            if (flightChange.getFlight() != null){
+                flightChangeList.add(flightChange);
+            }
         }
-        return flightChange.getMapFlight();
+        return flightChangeList;
     }
 
 }

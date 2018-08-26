@@ -1,19 +1,26 @@
 package com.kodilla.good.fly;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FlightChange {
-    private Map<Flight, Flight> mapFlight = new HashMap<>();
+    private Flight flight;
+    private List<Flight> flightChanges = new ArrayList<>();
 
-    public void  putFlight(Flight flightDeparture, Flight flightArrival) {
-        mapFlight.put(flightArrival, flightDeparture);
-
+    public void  putFlight(Flight flightArrival) {
+        flightChanges.add(flightArrival);
     }
 
-    public Map<Flight, Flight> getMapFlight() {
-        return mapFlight;
+    public List<Flight> getListFlightChange()
+    {
+        return flightChanges;
     }
 
+    public Flight getFlight() {
+        return flight;
+    }
 
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
 }
