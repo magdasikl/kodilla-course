@@ -19,9 +19,9 @@ public class BackTrack {
             solutions.add(sudokuBoard);
         } else {
             BackTrackStep step = sudokuBoard.determineCellWithLowestPossibilities();
-            if (step.getPossibilities().isEmpty()) {
-                System.out.println(step);
-            }
+//            if (step.getPossibilities().isEmpty()) { /////////////////////////////////////////////////////////////////////////////
+//                System.out.println(step);
+//            }
             for (Integer value : step.getPossibilities()) {
                 try {
                     SudokuBoard copy = new SudokuBoard(sudokuBoard);

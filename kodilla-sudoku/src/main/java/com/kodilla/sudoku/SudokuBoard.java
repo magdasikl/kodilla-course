@@ -112,7 +112,7 @@ public class SudokuBoard {
                         setCell(i, j, value);
                         changed = true;
                     }
-
+                    //wartość komórki jest nie ustalona
                     if (SudokuElement.EMPTY == element.getValue()) {
                         solved = false;
                     }
@@ -124,7 +124,7 @@ public class SudokuBoard {
 
         return solved;
     }
-
+//komórki o najniższych możliwosciach
     public BackTrackStep determineCellWithLowestPossibilities() {
         SudokuElement best = null;
         int row = -1;

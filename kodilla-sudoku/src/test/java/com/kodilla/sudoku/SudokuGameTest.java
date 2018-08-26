@@ -114,11 +114,11 @@ public class SudokuGameTest {
         // when:
         try {
              sudokuGame.start(new String[0]);
-
              Assert.fail("Wyjątek oczekiwany ponieważ w wierzu 0 i kolumnie 0 komórka nie ma żadnych możliwości.");
-
         } catch (IllegalStateException e) {
             // then: exception thrown
+            System.out.println("Wyjątek oczekiwany ponieważ w wierzu 0 i kolumnie 0 komórka nie ma żadnych możliwości.");
         }
+
     }
 }

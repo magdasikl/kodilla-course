@@ -3,7 +3,7 @@ package com.kodilla.sudoku;
 import java.util.TreeSet;
 
 /**
- * Zadaniem elementu jest orzetrzymywanie stanu pojedyńczej komórki. Przez stan rozumiemy wypełnioną liczbę albo jej niewypełnioną wartość EMPTY albo kolekcje możliwych wartości.
+ * Zadaniem elementu jest przetrzymywanie stanu pojedyńczej komórki. Przez stan rozumiemy wypełnioną liczbę albo jej niewypełnioną wartość EMPTY albo kolekcje możliwych wartości.
  * Nie może być tak że komórka ma wartość i jeszcze możliwości oraz brak przy pustym zbiorze możliwości. To ostatnie oznacza błąd w ułożeniu.
  */
 public class SudokuElement {

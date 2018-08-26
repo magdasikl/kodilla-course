@@ -9,8 +9,8 @@ public class ProductOrderService {
     }
 
     public void getResponse(Product product){
-        boolean isOrdered = shop.process();
-        if (isOrdered){
+        boolean isCorrectlyProcessed = shop.process();
+        if (isCorrectlyProcessed){
             repository.createOrder(product, shop);
             System.out.println("Zamówienie w trakcie realizacji");
         } else {
